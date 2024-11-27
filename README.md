@@ -140,26 +140,7 @@ The module support:
 ## Usage
 
 To use this module in your Terraform configuration, you'll need to provide values for the required variables.  
-
-### Example - Consumption budget with alert on 80% budget utilization and anomaly alert
-
-```terraform  
-module "consumption_budget" {
-  source = "dsb-norge/consumption-budget-monitoring/azurerm"
-
-  app_short_name            = "my-budget-basic"
-  subscription              = "sub-name"
-  environment               = "prod"
-  consumption_budget_amount = 9000 # in local currency of subscription location
-  consumption_budget_notification_cfg = {
-    "80_percent_consumed" = {
-      contact_emails = ["emaily@mail.here"]
-    }
-  }
-
-  cost_anomaly_alert_email_receivers = ["email@mail.here"]
-}  
-```  
+Check [examples](./examples/) for details.  
 
 <!-- markdownlint-disable MD033 -->
 ## Requirements
