@@ -1,4 +1,4 @@
-# Azure consumption budget and it's monitoring module.  
+# Azure consumption budget and it's monitoring module  
 
 Terraform module to create consumption budget with alerting rules in Azure.  
 
