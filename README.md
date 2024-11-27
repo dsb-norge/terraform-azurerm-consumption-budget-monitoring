@@ -121,7 +121,8 @@ git push --tags      # push the new tags
 
 **Note:** If you are having problems pulling main after a release, try to force fetch the tags: `git fetch --tags -f`.
 
-Below is a placeholder for Terraform-docs generated documentation. Do not edit between the delimiters.<!-- BEGIN_TF_DOCS -->
+<!-- Below is a placeholder for Terraform-docs generated documentation. Do not edit between the delimiters. -->  
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
