@@ -123,7 +123,7 @@ git push --tags      # push the new tags
 
 <!-- Below is a placeholder for Terraform-docs generated documentation. Do not edit between the delimiters. -->  
 <!-- BEGIN_TF_DOCS -->
-# Azure consumption budget and it's monitoring module.  
+# Azure consumption budget and it's monitoring module  
 
 Terraform module to create consumption budget with alerting rules in Azure.  
 
