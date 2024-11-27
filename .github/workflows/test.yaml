@@ -26,4 +26,4 @@ jobs:
     with:
       terraform-version: "1.9.x"
       tflint-version: "v0.53.0"
-      readme-file-path: "./, examples/01-basic, examples/02-full"
+      readme-file-path: "./., examples/01-basic, examples/02-full"
