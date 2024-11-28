@@ -17,7 +17,7 @@ env:
 
 jobs:
   tf:
-    uses: dsb-norge/github-actions-terraform/.github/workflows/terraform-module-ci.yaml@v0
+    uses: dsb-norge/github-actions-terraform/.github/workflows/terraform-module-ci.yaml@docs
     secrets: inherit
     permissions:
         contents: write  # required for checkout action. 
@@ -26,4 +26,3 @@ jobs:
     with:
       terraform-version: "1.9.x"
       tflint-version: "v0.53.0"
-      readme-file-path: "./., examples/01-basic, examples/02-full"
