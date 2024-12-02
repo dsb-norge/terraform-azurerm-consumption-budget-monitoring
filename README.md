@@ -123,25 +123,6 @@ git push --tags      # push the new tags
 
 <!-- Below is a placeholder for Terraform-docs generated documentation. Do not edit between the delimiters. -->  
 <!-- BEGIN_TF_DOCS -->
-# Azure consumption budget and it's monitoring module  
-
-Terraform module to create consumption budget with alerting rules in Azure.  
-
-## Features  
-
-This module supports creating budget on Azure subscription and monitor it's consumption.  
-
-The module support:  
-
-- Creating a budget on Azure subscription in local currency with adjustable time grain.
-- Creating notification alerts based on consumption.
-- Creating cost anomaly alerts.  
-
-## Usage
-
-To use this module in your Terraform configuration, you'll need to provide values for the required variables.  
-Check [examples](./examples/) for details.  
-
 <!-- markdownlint-disable MD033 -->
 ## Requirements
 
@@ -181,5 +162,4 @@ Check [examples](./examples/) for details.
 ## Modules
 
 No modules.
-
 <!-- END_TF_DOCS -->
