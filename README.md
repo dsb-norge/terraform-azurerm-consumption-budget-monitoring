@@ -1,6 +1,12 @@
 # Terraform module for budget consumption monitoring in Azure
 
-Terraform module to create consumption budget with alerting in Azure.
+Terraform module to create consumption budget with alerting in Azure.  
+Module has following features:  
+
+- Create consumption budget (in local currency).  
+- Create alert rule on budget consumption threshold with email notification.  
+- Create alert with email notification when budget consumption anomaly is detected.  
+
 
 ## Usage
 
