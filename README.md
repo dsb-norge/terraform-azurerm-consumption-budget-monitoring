@@ -1,4 +1,4 @@
-# tf-mod-azure-consumption-budget-monitoring
+# Terraform module for budget consuption monitoring in Azure
 
 Terraform module to create consumption budget with alerting in Azure.
 
