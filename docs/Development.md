@@ -20,6 +20,6 @@ Below you can find basic guidelines and rules that must be followed during modul
 
 Always use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) in your pull-requests.  
 Module is using [release-please action](https://github.com/googleapis/release-please-action) and that create release PR based on commit when merged to main.  
-Use [respective conventional commits](https://github.com/googleapis/release-please?tab=readme-ov-file#how-should-i-write-my-commits) to achieve correct [SemVer](https://semver.org) release number.
+Use [respective conventional commits](https://github.com/googleapis/release-please?tab=readme-ov-file#how-should-i-write-my-commits) to achieve correct [SemVer](https://semver.org) release version.
 
 Refer to [release-please documentation](https://github.com/googleapis/release-please) for better understanding and when additional questions occur.
