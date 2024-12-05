@@ -10,7 +10,7 @@ Module has following features:
 
 ## Usage
 
-Refer to [examples](./examples/) for usage of module.
+Refer to [examples](https://github.com/dsb-norge/terraform-azurerm-consumption-budget-monitoring/tree/main/examples) for usage of module.
 
 <!-- Below is a placeholder for Terraform-docs generated documentation. Do not edit between the delimiters. -->  
 <!-- BEGIN_TF_DOCS -->
