@@ -49,9 +49,9 @@ moved {
 resource "azurerm_cost_anomaly_alert" "sub_cost_anomaly_alert" {
   count = try(length(var.cost_anomaly_alert_email_receivers), 0) > 0 ? 1 : 0
 
-  display_name    = "Cost Anomaly Alert for subscription: ${var.subscription}"
+  display_name    = "Cost Anomaly Alert"
   email_addresses = var.cost_anomaly_alert_email_receivers
-  email_subject   = "Cost Anomaly detected in subscription: ${var.subscription}"
+  email_subject   = "Cost Anomaly detected in one of subscriptions"
   name            = "cost-anomaly-alert-${var.subscription}-${var.app_short_name}-${var.environment}"
   subscription_id = data.azurerm_subscription.current.id
 
