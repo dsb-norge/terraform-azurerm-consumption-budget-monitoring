@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/dsb-norge/terraform-azurerm-consumption-budget-monitoring/compare/v0.3.0...v0.3.1) (2026-09-24)
+
+
+### Bug Fixes
+
+* Hardcode azurerm_cost_anomaly_alert display_name and email_subje… ([#8](https://github.com/dsb-norge/terraform-azurerm-consumption-budget-monitoring/issues/8)) ([5e16921](https://github.com/dsb-norge/terraform-azurerm-consumption-budget-monitoring/commit/5e16921b1d8ce254fcbb673f154e7cdc89917723))
+
 ## [0.3.0](https://github.com/dsb-norge/terraform-azurerm-consumption-budget-monitoring/compare/v0.2.1...v0.3.0) (2024-12-05)
 
 
