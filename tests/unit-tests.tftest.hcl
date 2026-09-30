@@ -1,9 +1,4 @@
-provider "azurerm" {
-  features {}
-}
-
 mock_provider "azurerm" {
-  alias = "mock"
   override_data {
     target = data.azurerm_subscription.current
     values = {
@@ -187,10 +182,6 @@ run "cost_anomaly_alert_email_receivers_validation" {
 run "it_should_output_resource_id_for_budget" {
   command = apply
 
-  providers = {
-    azurerm = azurerm.mock
-  }
-
   variables {
     consumption_budget_notification_cfg = {
       "80_percent_consumed" = {
@@ -207,10 +198,6 @@ run "it_should_output_resource_id_for_budget" {
 
 run "it_should_output_resource_id_for_cost_anomaly_alert" {
   command = apply
-
-  providers = {
-    azurerm = azurerm.mock
-  }
 
   variables {
     cost_anomaly_alert_email_receivers = ["vaild.dummy@epost.her"]
