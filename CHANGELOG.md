@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/dsb-norge/terraform-azurerm-consumption-budget-monitoring/compare/v0.3.1...v1.0.0) (2026-10-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* callers on azurerm 3 stay on v0.3.1 of this module, or upgrade azurerm to 4.
+
+### Features
+
+* require azurerm 4 ([8f918e4](https://github.com/dsb-norge/terraform-azurerm-consumption-budget-monitoring/commit/8f918e4c0992cef74caef2545a34c5413eda6368))
+
 ## [0.3.1](https://github.com/dsb-norge/terraform-azurerm-consumption-budget-monitoring/compare/v0.3.0...v0.3.1) (2026-09-24)
 
 
