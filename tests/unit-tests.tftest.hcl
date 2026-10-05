@@ -163,6 +163,41 @@ run "cost_anomaly_alert_name_correct" {
     condition     = azurerm_cost_anomaly_alert.sub_cost_anomaly_alert[0].name == var._test_expected_attributes.cost_anomaly_alert_name
     error_message = "Cost anomaly alert name is not correct"
   }
+
+  assert {
+    condition     = length(azurerm_cost_anomaly_alert.sub_cost_anomaly_alert[0].name) <= 50
+    error_message = "Cost anomaly alert name is longer than the 50 characters Azure accepts"
+  }
+}
+
+run "cost_anomaly_alert_name_that_fits_is_kept" {
+  command = plan
+
+  variables {
+    cost_anomaly_alert_email_receivers = ["ole.bole@domain.com"]
+    subscription                       = "subscription-test"
+    app_short_name                     = "app"
+    environment                        = "dev-tests"
+  }
+
+  assert {
+    condition     = azurerm_cost_anomaly_alert.sub_cost_anomaly_alert[0].name == "cost-anomaly-alert-subscription-test-app-dev-tests"
+    error_message = "A cost anomaly alert name of 50 characters or fewer must be kept as it is, or existing alerts are replaced"
+  }
+}
+
+run "cost_anomaly_alert_name_cut_at_a_hyphen" {
+  command = plan
+
+  variables {
+    cost_anomaly_alert_email_receivers = ["ole.bole@domain.com"]
+    subscription                       = "subscription-test-nam"
+  }
+
+  assert {
+    condition     = azurerm_cost_anomaly_alert.sub_cost_anomaly_alert[0].name == "cost-anomaly-alert-subscription-test-nam-a92ce1aa"
+    error_message = "A name cut where a hyphen follows must not carry two hyphens before its hash"
+  }
 }
 
 run "cost_anomaly_alert_email_receivers_validation" {
