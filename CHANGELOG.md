@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/dsb-norge/terraform-azurerm-consumption-budget-monitoring/compare/v1.0.0...v1.0.1) (2026-10-05)
+
+
+### Bug Fixes
+
+* keep the cost anomaly alert's name within azure's 50 characters ([07cccb4](https://github.com/dsb-norge/terraform-azurerm-consumption-budget-monitoring/commit/07cccb41f781a1a1cffd81a617bcdc9ac736f109))
+
 ## [1.0.0](https://github.com/dsb-norge/terraform-azurerm-consumption-budget-monitoring/compare/v0.3.1...v1.0.0) (2026-10-05)
 
 
