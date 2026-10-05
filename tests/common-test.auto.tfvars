@@ -6,5 +6,7 @@ subscription              = "subscription-test-name"
 environment               = "prod"
 
 _test_expected_attributes = {
-  cost_anomaly_alert_name = "cost-anomaly-alert-subscription-test-name-my-azure-app-prod"
+  # The whole name, cost-anomaly-alert-subscription-test-name-my-azure-app-prod, is 59 characters,
+  # past Azure's 50: it is cut and ends in a hash of itself.
+  cost_anomaly_alert_name = "cost-anomaly-alert-subscription-test-name-4bb55551"
 }

@@ -6,6 +6,16 @@ locals {
     operator       = "GreaterThan"
     contact_emails = []
   }
+
+  # Azure rejects a cost anomaly alert (a scheduled action) whose name is over 50 characters
+  # (InvalidName). A name that fits is kept, so an existing alert is not replaced; a longer one is cut
+  # and ends in a hash of the whole name, which keeps it unique per subscription, app and environment.
+  cost_anomaly_alert_name_full = "cost-anomaly-alert-${var.subscription}-${var.app_short_name}-${var.environment}"
+  cost_anomaly_alert_name = (
+    length(local.cost_anomaly_alert_name_full) <= 50
+    ? local.cost_anomaly_alert_name_full
+    : "${trimsuffix(substr(local.cost_anomaly_alert_name_full, 0, 41), "-")}-${substr(sha1(local.cost_anomaly_alert_name_full), 0, 8)}"
+  )
 }
 
 data "azurerm_subscription" "current" {}
@@ -52,7 +62,7 @@ resource "azurerm_cost_anomaly_alert" "sub_cost_anomaly_alert" {
   display_name    = "Cost Anomaly Alert"
   email_addresses = var.cost_anomaly_alert_email_receivers
   email_subject   = "Cost Anomaly detected in one of subscriptions"
-  name            = "cost-anomaly-alert-${var.subscription}-${var.app_short_name}-${var.environment}"
+  name            = local.cost_anomaly_alert_name
   subscription_id = data.azurerm_subscription.current.id
 
   # tags not supported
