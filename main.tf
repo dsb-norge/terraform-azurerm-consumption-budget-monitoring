@@ -16,6 +16,8 @@ locals {
     ? local.cost_anomaly_alert_name_full
     : "${trimsuffix(substr(local.cost_anomaly_alert_name_full, 0, 41), "-")}-${substr(sha1(local.cost_anomaly_alert_name_full), 0, 8)}"
   )
+
+  create_cost_anomaly_alert = try(length(var.cost_anomaly_alert_email_receivers), 0) > 0
 }
 
 data "azurerm_subscription" "current" {}
@@ -56,13 +58,27 @@ moved {
   to   = azurerm_cost_anomaly_alert.sub_cost_anomaly_alert[0]
 }
 
+# Azure ends a cost anomaly alert's schedule a year after the alert was created or last updated (azurerm sets the
+# end date on every write), and Terraform does not track the dates, so an alert nothing changes stops sending after
+# a year without any drift to show. The timer's time is in the alert's message: when the timer rotates, 330 days on,
+# the message changes and the update renews the alert in place, a month before it would end. replace_triggered_by
+# on the timer does not work: an expired timer is planned as a create, which triggers nothing. The message holds the
+# month and year, never a full date: Azure refuses a message it takes for a phone number or an email address
+# (InvalidScheduledActionFieldContainsPii), as it did "2026-10-06".
+resource "time_rotating" "cost_anomaly_alert_renewal" {
+  count = local.create_cost_anomaly_alert ? 1 : 0
+
+  rotation_days = 330
+}
+
 resource "azurerm_cost_anomaly_alert" "sub_cost_anomaly_alert" {
-  count = try(length(var.cost_anomaly_alert_email_receivers), 0) > 0 ? 1 : 0
+  count = local.create_cost_anomaly_alert ? 1 : 0
 
   display_name    = "Cost Anomaly Alert"
   email_addresses = var.cost_anomaly_alert_email_receivers
   email_subject   = "Cost Anomaly detected in one of subscriptions"
   name            = local.cost_anomaly_alert_name
+  message         = "Managed by Terraform and renewed yearly; last renewed in ${formatdate("MMMM YYYY", time_rotating.cost_anomaly_alert_renewal[count.index].rfc3339)}."
   subscription_id = data.azurerm_subscription.current.id
 
   # tags not supported
