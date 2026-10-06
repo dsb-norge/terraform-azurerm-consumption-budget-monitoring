@@ -6,6 +6,7 @@ Module has following features:
 - Create consumption budget (in local currency).  
 - Create alert rule on budget consumption threshold with email notification.  
 - Create alert with email notification when budget consumption anomaly is detected, to at most 5 recipients (Azure's limit).  
+- Renew the anomaly alert every 330 days: Azure ends an alert's schedule a year after it was created or last changed.  
 
 
 ## Usage
@@ -21,6 +22,7 @@ Refer to [examples](https://github.com/dsb-norge/terraform-azurerm-consumption-b
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.8.0, < 2.0.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 4.0.0, < 5.0.0 |
+| <a name="requirement_time"></a> [time](#requirement\_time) | >= 0.9.0, < 1.0.0 |
 
 ## Resources
 
@@ -28,6 +30,7 @@ Refer to [examples](https://github.com/dsb-norge/terraform-azurerm-consumption-b
 |------|------|
 | [azurerm_consumption_budget_subscription.sub_budget_consumption](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/consumption_budget_subscription) | resource |
 | [azurerm_cost_anomaly_alert.sub_cost_anomaly_alert](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cost_anomaly_alert) | resource |
+| [time_rotating.cost_anomaly_alert_renewal](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/rotating) | resource |
 | [azurerm_subscription.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscription) | data source |
 
 <!-- markdownlint-disable MD013 -->

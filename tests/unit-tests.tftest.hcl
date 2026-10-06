@@ -152,6 +152,43 @@ run "cost_anomaly_alert_created_with_email_receivers" {
   }
 }
 
+run "cost_anomaly_alert_no_renewal_timer_without_alert" {
+  command = plan
+
+  assert {
+    error_message = "No renewal timer should be created without a cost anomaly alert"
+    condition     = length(time_rotating.cost_anomaly_alert_renewal) == 0
+  }
+}
+
+run "cost_anomaly_alert_renewed_every_330_days" {
+  command = apply
+
+  variables {
+    cost_anomaly_alert_email_receivers = ["ole.bole@domain.com"]
+  }
+
+  assert {
+    error_message = "The renewal timer must rotate every 330 days, a month before Azure ends the alert's year"
+    condition     = time_rotating.cost_anomaly_alert_renewal[0].rotation_days == 330
+  }
+
+  assert {
+    error_message = "The alert's message must carry the renewal timer's date, so a rotation updates and renews the alert"
+    condition     = azurerm_cost_anomaly_alert.sub_cost_anomaly_alert[0].message == "Managed by Terraform and renewed yearly; last renewed in ${formatdate("MMMM YYYY", time_rotating.cost_anomaly_alert_renewal[0].rfc3339)}."
+  }
+
+  assert {
+    error_message = "The alert's message must hold nothing Azure takes for a phone number, or Azure refuses it (InvalidScheduledActionFieldContainsPii)"
+    condition     = !can(regex("[0-9]{5,}|[0-9]+[-/.][0-9]+", azurerm_cost_anomaly_alert.sub_cost_anomaly_alert[0].message))
+  }
+
+  assert {
+    error_message = "The alert's message must stay within Azure's 250 characters"
+    condition     = length(azurerm_cost_anomaly_alert.sub_cost_anomaly_alert[0].message) <= 250
+  }
+}
+
 run "cost_anomaly_alert_name_correct" {
   command = plan
 
