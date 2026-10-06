@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/dsb-norge/terraform-azurerm-consumption-budget-monitoring/compare/v1.0.1...v1.1.0) (2026-10-06)
+
+
+### Features
+
+* renew the cost anomaly alert before Azure ends it ([fd2bd51](https://github.com/dsb-norge/terraform-azurerm-consumption-budget-monitoring/commit/fd2bd513aca7e7a777d3bdf8303b5d59434fc266))
+
+
+### Bug Fixes
+
+* refuse more than five cost anomaly alert receivers at plan time ([c5256b8](https://github.com/dsb-norge/terraform-azurerm-consumption-budget-monitoring/commit/c5256b8dc44826b286174d0a46dbce7509fdb4f7))
+
 ## [1.0.1](https://github.com/dsb-norge/terraform-azurerm-consumption-budget-monitoring/compare/v1.0.0...v1.0.1) (2026-10-05)
 
 
