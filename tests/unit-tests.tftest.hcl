@@ -214,6 +214,32 @@ run "cost_anomaly_alert_email_receivers_validation" {
 
 }
 
+run "cost_anomaly_alert_email_receivers_at_most_five" {
+  command = plan
+
+  variables {
+    cost_anomaly_alert_email_receivers = ["a@domain.com", "b@domain.com", "c@domain.com", "d@domain.com", "e@domain.com", "f@domain.com"]
+  }
+
+  # verify that a sixth receiver, which Azure refuses, fails the plan
+  expect_failures = [
+    var.cost_anomaly_alert_email_receivers,
+  ]
+}
+
+run "cost_anomaly_alert_email_receivers_five_allowed" {
+  command = plan
+
+  variables {
+    cost_anomaly_alert_email_receivers = ["a@domain.com", "b@domain.com", "c@domain.com", "d@domain.com", "e@domain.com"]
+  }
+
+  assert {
+    condition     = length(azurerm_cost_anomaly_alert.sub_cost_anomaly_alert[0].email_addresses) == 5
+    error_message = "Five receivers, Azure's limit, must be accepted"
+  }
+}
+
 run "it_should_output_resource_id_for_budget" {
   command = apply
 
