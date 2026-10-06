@@ -5,7 +5,7 @@ Module has following features:
 
 - Create consumption budget (in local currency).  
 - Create alert rule on budget consumption threshold with email notification.  
-- Create alert with email notification when budget consumption anomaly is detected.  
+- Create alert with email notification when budget consumption anomaly is detected, to at most 5 recipients (Azure's limit).  
 
 
 ## Usage
@@ -41,7 +41,7 @@ Refer to [examples](https://github.com/dsb-norge/terraform-azurerm-consumption-b
 | <a name="input_subscription"></a> [subscription](#input\_subscription) | The subscription | `string` | n/a | yes |
 | <a name="input_consumption_budget_notification_cfg"></a> [consumption\_budget\_notification\_cfg](#input\_consumption\_budget\_notification\_cfg) | The notification blocks | <pre>map(object({<br/>    enabled        = optional(bool)<br/>    threshold      = optional(number)<br/>    operator       = optional(string)<br/>    contact_emails = optional(list(string))<br/>  }))</pre> | <pre>{<br/>  "notification1": {<br/>    "enabled": false<br/>  }<br/>}</pre> | no |
 | <a name="input_consumption_budget_time_grain"></a> [consumption\_budget\_time\_grain](#input\_consumption\_budget\_time\_grain) | The time grain for the consumption budget | `string` | `"Monthly"` | no |
-| <a name="input_cost_anomaly_alert_email_receivers"></a> [cost\_anomaly\_alert\_email\_receivers](#input\_cost\_anomaly\_alert\_email\_receivers) | The email addresses to receive cost anomaly alerts | `list(string)` | `[]` | no |
+| <a name="input_cost_anomaly_alert_email_receivers"></a> [cost\_anomaly\_alert\_email\_receivers](#input\_cost\_anomaly\_alert\_email\_receivers) | The email addresses to receive cost anomaly alerts, at most 5 | `list(string)` | `[]` | no |
 
 ## Outputs
 

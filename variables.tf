@@ -52,9 +52,17 @@ variable "consumption_budget_time_grain" {
 }
 
 variable "cost_anomaly_alert_email_receivers" {
-  description = "The email addresses to receive cost anomaly alerts"
+  description = "The email addresses to receive cost anomaly alerts, at most 5"
   type        = list(string)
   default     = []
+
+  # Azure refuses more than 5 recipients on a cost anomaly alert (InvalidScheduledActionEmailRecipients) on every
+  # write, a limit neither Microsoft's nor the azurerm docs mention. An alert created before the limit applied keeps
+  # working until something changes it, and then every apply fails; failing the plan says so up front.
+  validation {
+    error_message = "a cost anomaly alert takes at most 5 email receivers, which Azure enforces"
+    condition     = try(length(var.cost_anomaly_alert_email_receivers), 0) <= 5
+  }
 
   validation {
     error_message = "value must be a valid email address"
